@@ -30,6 +30,8 @@ public class playerMove : MonoBehaviour
     public Animator anim3;
     bool isAnimatingDown;
     public Transform target;
+    Vector2 moveDirection;
+    Vector3 direction;
 
     //Grounded Vars
 
@@ -54,11 +56,11 @@ public class playerMove : MonoBehaviour
 
     void Update()
     {
+
+
         //for later dash ability
         
-        //Vector3 direction = transform.position - target.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //rb.transform.eulerAngles = new Vector3(0, 0, angle);
+
 
 
         if (isDashing)
@@ -207,7 +209,24 @@ public class playerMove : MonoBehaviour
         }
 
         offset = groundCheck.position;
+        if (Input.GetKey("k"))
+        {
+            TargetDash();
+        }
 
+    }
+    void TargetDash()
+    {
+        direction = target.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb.rotation = angle;
+        direction.Normalize();
+        moveDirection = direction;
+        MoveCharacter(moveDirection);
+    }
+    void MoveCharacter(Vector2 direction)
+    {
+        rb.MovePosition((Vector2)transform.position + (direction * dashSpeed * Time.deltaTime));
     }
 
 }
