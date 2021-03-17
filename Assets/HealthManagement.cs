@@ -19,6 +19,10 @@ public class HealthManagement : MonoBehaviour
     }
     private void Update()
     {
+        if(Health < 0)
+        {
+            Health = 0;
+        }
         if(Health == 0)
         {
             SceneManager.LoadScene(0);
