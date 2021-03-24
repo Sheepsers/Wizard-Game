@@ -29,9 +29,8 @@ public class playerMove : MonoBehaviour
     public Transform dashPos;
     public Animator anim3;
     bool isAnimatingDown;
-    public Transform target;
-    Vector2 moveDirection;
-    Vector3 direction;
+    bool isMovingRight;
+    bool isMovingLeft;
 
     //Grounded Vars
 
@@ -41,7 +40,14 @@ public class playerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(dashCounter > 0)
+
+        if (!isDashing)
+        {
+            rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
+        }
+
+
+        if (dashCounter > 0)
         {
             dashCounter = dashCounter - 1;
         }
@@ -50,16 +56,35 @@ public class playerMove : MonoBehaviour
             dashCooldown = dashCooldown - 1;
         }
 
+        if (isMovingRight)
+        {
+
+        }
+
+        if (isMovingLeft)
+        {
+
+        }
+        
+        if (isDashing && player.flipX)
+        {
+            rb.velocity = new Vector2(-dashSpeed, 0);
+        }
+        else if (isDashing && !player.flipX)
+        {
+            rb.velocity = new Vector2(dashSpeed, 0);
+        }
+
+        if (dashCounter > 12 && dashCounter < 25)
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
     }
 
 
 
     void Update()
     {
-
-
-        //for later dash ability
-        
 
 
 
@@ -72,19 +97,8 @@ public class playerMove : MonoBehaviour
             anim.SetBool("isDashing", false);
         }
 
-        if (!isDashing)
-        {
-            rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
-        }
 
-        if (isDashing && player.flipX)
-        {
-            rb.velocity = new Vector2(-dashSpeed, 0);
-        }
-        else if (isDashing && !player.flipX )
-        {
-            rb.velocity = new Vector2(dashSpeed, 0);
-        }
+
 
         //Dash Detection
         if (Input.GetButtonDown("Dash") && dashCooldown == 0)
@@ -110,10 +124,7 @@ public class playerMove : MonoBehaviour
             rb.gravityScale = 3;
             player.enabled = true;
         }
-        if(dashCounter > 12 && dashCounter < 25)
-        {
-            rb.velocity = new Vector2(0, 0);
-        }
+
 
         if (dashCounter > 4 && dashCounter < 12)
         {
@@ -209,24 +220,7 @@ public class playerMove : MonoBehaviour
         }
 
         offset = groundCheck.position;
-        if (Input.GetKey("k"))
-        {
-            TargetDash();
-        }
 
-    }
-    void TargetDash()
-    {
-        direction = target.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
-        direction.Normalize();
-        moveDirection = direction;
-        MoveCharacter(moveDirection);
-    }
-    void MoveCharacter(Vector2 direction)
-    {
-        rb.MovePosition((Vector2)transform.position + (direction * dashSpeed * Time.deltaTime));
     }
 
 }
