@@ -8,12 +8,20 @@ public class HealthManagement : MonoBehaviour
     public float Health;
     public GameObject Healthbar;
     public float damageCooldown;
+    GameObject cameraShake;
+
+    private void Awake()
+    {
+        cameraShake = GameObject.FindGameObjectWithTag("Camera");
+    }
+
     public void TakeDamage(float damage)
     {
         if(damageCooldown == 0)
         {
             Health -= damage;
             damageCooldown = 2;
+            cameraShake.GetComponent<ScreenShake>().StartShake(0.2f, 0.2f);
         }
         Healthbar.GetComponent<healthBar>().ManageHealth(Health);
     }
