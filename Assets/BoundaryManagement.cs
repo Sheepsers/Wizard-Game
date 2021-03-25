@@ -2,7 +2,7 @@
 
 public class BoundaryManagement : MonoBehaviour
 {
-    BoxCollider2D managerBox;
+    public BoxCollider2D managerBox;
     public Transform player;
     public GameObject boundary;
 
