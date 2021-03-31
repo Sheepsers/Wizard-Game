@@ -28,9 +28,8 @@ public class playerMove : MonoBehaviour
     public Vector2 offset;
     public Transform dashPos;
     public Animator anim3;
-    bool isAnimatingDown;
-    bool isMovingRight;
-    bool isMovingLeft;
+    Vector3 startingPosition;
+    float dashDistance;
 
     //Grounded Vars
 
@@ -49,23 +48,17 @@ public class playerMove : MonoBehaviour
 
         if (dashCounter > 0)
         {
-            dashCounter = dashCounter - 1;
+            dashCounter -= Time.deltaTime;
         }
         if (dashCooldown > 0)
         {
-            dashCooldown = dashCooldown - 1;
+            dashCooldown -= Time.deltaTime;
         }
-
-        if (isMovingRight)
+        else
         {
-
+            dashCooldown = 0;
         }
 
-        if (isMovingLeft)
-        {
-
-        }
-        
         if (isDashing && player.flipX)
         {
             rb.velocity = new Vector2(-dashSpeed, 0);
@@ -75,18 +68,14 @@ public class playerMove : MonoBehaviour
             rb.velocity = new Vector2(dashSpeed, 0);
         }
 
-        if (dashCounter > 12 && dashCounter < 25)
-        {
-            rb.velocity = new Vector2(0, 0);
-        }
+
+
     }
 
 
 
     void Update()
     {
-
-
 
         if (isDashing)
         {
@@ -104,7 +93,7 @@ public class playerMove : MonoBehaviour
         if (Input.GetButtonDown("Dash") && dashCooldown == 0)
         {
             dashCounter = dashTime;
-            dashCooldown = 40;
+            dashCooldown = 0.7f;
         }
 
         if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
@@ -126,7 +115,7 @@ public class playerMove : MonoBehaviour
         }
 
 
-        if (dashCounter > 4 && dashCounter < 12)
+        if (dashCounter > 0)
         {
             isDashing = true;
         }
@@ -134,6 +123,8 @@ public class playerMove : MonoBehaviour
         {
             isDashing = false;
         }
+
+
 
         if (isGrounded)
         {
