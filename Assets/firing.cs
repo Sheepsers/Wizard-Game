@@ -22,7 +22,7 @@ public class firing : MonoBehaviour
             isAnimating = false;
         }
 
-        if (Input.GetKey("j") && !isAnimating)
+        if (Input.GetButton("Fire1") && !isAnimating)
         {
             Shoot();
         }

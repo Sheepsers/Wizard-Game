@@ -27,7 +27,7 @@ public class roomEnter : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D player)
     {
         playerRB = player.GetComponent<Rigidbody2D>();
         playerRB.position = new Vector2(roomEntryPoint.position.x, roomEntryPoint.position.y);

@@ -26,10 +26,16 @@ public class enemyAI : MonoBehaviour
     public float attackRange;
     public float damage;
     public float attackCooldown = 2;
+    public Transform aircheck;
+    bool forwardisSafe;
+    public LayerMask groundmask;
+    bool ismoving;
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        
+
         if (stunTimer > 0)
         {
             stunTimer -= Time.deltaTime;
@@ -42,9 +48,17 @@ public class enemyAI : MonoBehaviour
         {
             attackCooldown = 0;
         }
+
     }
     void Update()
     {
+        if (!forwardisSafe)
+        {
+            rb.velocity = new Vector2 (0, rb.velocity.y);
+        }
+
+        forwardisSafe = Physics2D.OverlapCircle(aircheck.position, 0.2f, groundmask);
+
         playerObj = GameObject.Find("Player");
 
         Player = playerObj.GetComponent<Transform>();
@@ -52,10 +66,12 @@ public class enemyAI : MonoBehaviour
         if(rb.velocity.x > 0.5f || rb.velocity.x < -0.5f)
         {
             enemyAnim.SetBool("isMoving", true);
+            ismoving = true;
         }
         else
         {
             enemyAnim.SetBool("isMoving", false);
+            ismoving = false;
         }
 
         if(health == 0)
@@ -80,22 +96,27 @@ public class enemyAI : MonoBehaviour
         else
         {
             inRange = false;
-            playerDistance = 0;
-            verticalPlayerDistance = 0;
         }
 
         if(playerDistance < 0 && inRange)
         {
-            rb.velocity = new Vector2(Speed, rb.velocity.y);
             Enemy.eulerAngles = new Vector3(0, 180, 0);
+            
+            if (forwardisSafe) 
+            {
+                rb.velocity = new Vector2(Speed, rb.velocity.y);
+            }
         }
        
         if (playerDistance > 0 && inRange)
         {
-            rb.velocity = new Vector2(-Speed, rb.velocity.y);
             Enemy.eulerAngles = new Vector3(0, 0, 0);
-        }
 
+            if (forwardisSafe)
+            {
+                rb.velocity = new Vector2(-Speed, rb.velocity.y);
+            }
+        }
         if (!inRange)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);

@@ -9,7 +9,6 @@ public class playerMove : MonoBehaviour
     public float jump;
     float moveVelocity;
     public Rigidbody2D rb;
-    public Animator anim2;
     public Animator anim;
     bool isJumping;
     public Transform groundCheck;
@@ -24,12 +23,12 @@ public class playerMove : MonoBehaviour
     float dashCounter;
     bool isDashing;
     public float dashCooldown;
-    public SpriteRenderer dashCloud;
     public Vector2 offset;
     public Transform dashPos;
     public Animator anim3;
     Vector3 startingPosition;
     float dashDistance;
+    public GameObject screenflash;
 
     //Grounded Vars
 
@@ -40,11 +39,14 @@ public class playerMove : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (!isDashing)
+        if (!isDashing && Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0)
         {
             rb.velocity = new Vector2(moveVelocity, rb.velocity.y);
         }
-
+        else if (!isDashing)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
 
         if (dashCounter > 0)
         {
@@ -80,10 +82,12 @@ public class playerMove : MonoBehaviour
         if (isDashing)
         {
             anim.SetBool("isDashing", true);
+            screenflash.SetActive(true);
         }
         else
         {
             anim.SetBool("isDashing", false);
+            screenflash.SetActive(false);
         }
 
 
@@ -96,22 +100,18 @@ public class playerMove : MonoBehaviour
             dashCooldown = 0.7f;
         }
 
-        if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
+        if (Input.GetButtonUp("Left") || Input.GetButtonUp("Down"))
         {
             moveVelocity = 0f;
         }
 
         if (dashCounter > 0)
         {
-            anim2.SetBool("isDashing", true);
             rb.gravityScale = 0;
-            player.enabled = false;
         }
         else
         {
-            anim2.SetBool("isDashing", false);
             rb.gravityScale = 3;
-            player.enabled = true;
         }
 
 
@@ -141,26 +141,26 @@ public class playerMove : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
         //Jumping
-        if (Input.GetKeyDown("space") && hangCounter > 0f)
+        if (Input.GetButtonDown("Jump") && hangCounter > 0f)
         {
             if (!isJumping)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jump);
             }
         }
-        if (Input.GetKeyUp("space") && isJumping)
+        if (Input.GetButtonUp("Jump") && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
         }
 
         //Left Right Movement
-        if (Input.GetKey(KeyCode.A) && !Input.GetButton("Dash"))
+        if (Input.GetAxisRaw("Horizontal") < 0 && !Input.GetButton("Dash"))
         {
             moveVelocity = -speed;
         }
 
 
-        if (Input.GetKey(KeyCode.D) && !Input.GetButton("Dash"))
+        if (Input.GetAxisRaw("Horizontal") > 0 && !Input.GetButton("Dash"))
         {
             moveVelocity = speed;
         }
@@ -188,13 +188,11 @@ public class playerMove : MonoBehaviour
         {
             dashPos.position = rb.position;
             player.flipX = false;
-            dashCloud.flipX = false;
         }
         else if (Input.GetAxisRaw("Horizontal") < 0 && !isDashing)
         {
             dashPos.position = rb.position;
             player.flipX = true;
-            dashCloud.flipX = true;
         }
         if (isGrounded)
         {

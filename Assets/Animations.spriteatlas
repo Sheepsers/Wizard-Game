@@ -78,6 +78,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f8e623e3e6cfa274cb1028b43ac316b2, type: 3}
   - {fileID: 21300000, guid: d057911454218b44cb30176c01c2b371, type: 3}
   - {fileID: 21300000, guid: 5c068724339b60f499e8bb6a883622a1, type: 3}
+  - {fileID: 21300000, guid: d853d3641477ccc4480e9d77c63a666e, type: 3}
   - {fileID: 21300000, guid: a0c817a4869075e4d92ad396eaa220fa, type: 3}
   - {fileID: 21300000, guid: 390c2cc455da9244091644a881bd3291, type: 3}
   - {fileID: 21300000, guid: 6064ed15e5042384ca6d80eb77c94aae, type: 3}
@@ -85,10 +86,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1f83de451d30fac40b750b0e652ba2be, type: 3}
   - {fileID: 21300000, guid: cae06555c8744ea4f81378a6b24fa091, type: 3}
   - {fileID: 21300000, guid: 41b11d859dfe52c4b9d4e7f1735ac079, type: 3}
+  - {fileID: 21300000, guid: af5338a58494ede4faca85cd5de749db, type: 3}
   - {fileID: 21300000, guid: 2bdfaca5a5a44624da074ad768af4375, type: 3}
   - {fileID: 21300000, guid: f9c8e4062ef8c984fac44b5b81306f46, type: 3}
   - {fileID: 21300000, guid: 3cc22b0632ca5ab4aa37fb4dcf7e8da5, type: 3}
   - {fileID: 21300000, guid: f32fc93609439ee449ced464d77d8a52, type: 3}
+  - {fileID: 21300000, guid: 97537256c73530344baa9e386b040b3c, type: 3}
   - {fileID: 21300000, guid: 8d3bff8631cd571429f2b22246c82a92, type: 3}
   - {fileID: 21300000, guid: 0fa5e3f6bfa8bfd44814bc40c5b72e79, type: 3}
   - {fileID: 21300000, guid: d21e6b171e9f85d4aa8e5aec5499e096, type: 3}
@@ -106,6 +109,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 23228c585a22c584c998edd9ed21d3e2, type: 3}
   - {fileID: 21300000, guid: c5097968efef303488eb41a644e390d2, type: 3}
   - {fileID: 21300000, guid: 7b2fdeb831e31514b9d33cd1b59d6164, type: 3}
+  - {fileID: 21300000, guid: a2a28e59e20a20b48b058c212d706c78, type: 3}
   - {fileID: 21300000, guid: 3aec98896775c2544a8e5e5fdd34670c, type: 3}
   - {fileID: 21300000, guid: 5bbb9ca933d447148a964b0330d1ed4b, type: 3}
   - {fileID: 21300000, guid: 5aa3bac9ffb1e4a40bed96202ec0be22, type: 3}
@@ -117,12 +121,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 10ad07ead45bdb3439cc8ce4b60c34b9, type: 3}
   - {fileID: 21300000, guid: 6e2db09b13779fb49881c3b865ccdb9f, type: 3}
   - {fileID: 21300000, guid: 1119349b043714a439e1987504a03533, type: 3}
+  - {fileID: 21300000, guid: b2d111ab080c4504b81e5852ae4fad67, type: 3}
   - {fileID: 21300000, guid: d92fdfab2c664c248bbe74f94acef253, type: 3}
   - {fileID: 21300000, guid: 76b438dba97d00a49beb04516f8ca0ed, type: 3}
   - {fileID: 21300000, guid: c4f62cdb5ad0ddb458431bad18749d49, type: 3}
   - {fileID: 21300000, guid: 026b17eb495a50f439b83a785b08d1e0, type: 3}
   - {fileID: 21300000, guid: 0194bd4cbc1ec24438a6571cde06a8c5, type: 3}
   - {fileID: 21300000, guid: 89d4838cffe1a594eb4f0d3650a4b34c, type: 3}
+  - {fileID: 21300000, guid: 993635ccf4b72614b8ca16ddaef1c8b5, type: 3}
+  - {fileID: 21300000, guid: 3204c9dc1b1dd574e81a4823345d335d, type: 3}
   - {fileID: 21300000, guid: 052746ec702247849aa192e3f6515340, type: 3}
   - {fileID: 21300000, guid: 6d8c702d58466c54997ab82a4d10b3ea, type: 3}
   - {fileID: 21300000, guid: ddfc383dec3fab840871e4e858bafbd8, type: 3}
@@ -139,6 +146,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4cb31eae5ecb91247ad54058a8c012fc, type: 3}
   - {fileID: 21300000, guid: 0e5661def5549b540a4150404db15091, type: 3}
   - {fileID: 21300000, guid: 923689ee6ddd0214abe545e2645846bc, type: 3}
+  - {fileID: 21300000, guid: f7731aee1e0a25f45a6ee3ce69187783, type: 3}
   - {fileID: 21300000, guid: 5ce8a62fb33129449bef633359bc83b4, type: 3}
   - {fileID: 21300000, guid: 2bd87f3f9c487b04f88be6b63c34ca83, type: 3}
   - {fileID: 21300000, guid: d095574f748d4234c8d845a4e6de581f, type: 3}
@@ -180,6 +188,7 @@ SpriteAtlas:
   - enemyIdle0004
   - dashTP0012
   - enemyWalk0008
+  - WizardTeleport0007
   - enemyIdle0000
   - wizardAttackUp0003
   - enemyWalk0011
@@ -187,10 +196,12 @@ SpriteAtlas:
   - wizardAttackDown0001
   - wizardAttackDown0013
   - projectile0008
+  - WizardTeleport0005
   - enemyAttack0008
   - dashTP0003
   - enemyAttack0006
   - wizardAttack0009
+  - WizardTeleport0003
   - dashTP0009
   - enemyIdle0001
   - wizardAttackUp0012
@@ -208,6 +219,7 @@ SpriteAtlas:
   - projectile0001
   - wizardAttackDown0010
   - wizardAttackDown0007
+  - WizardTeleport0000
   - enemyAttack0007
   - enemyAttack0000
   - wizardAttackDown0003
@@ -219,12 +231,15 @@ SpriteAtlas:
   - dashTP0016
   - wizardAttackDown0009
   - projectile0000
+  - WizardTeleport0006
   - wizardAttack0002
   - wizardAttack0004
   - projectile0003
   - projectile0002
   - enemyIdle0003
   - enemyWalk0007
+  - WizardTeleport0004
+  - WizardTeleport0002
   - wizardAttackUp0007
   - wizardAttack0003
   - projectile0004
@@ -241,6 +256,7 @@ SpriteAtlas:
   - enemyWalk0006
   - projectile0009
   - dashTP0006
+  - WizardTeleport0001
   - dashTP0015
   - wizardAttackUp0004
   - enemyWalk0002

@@ -21,7 +21,7 @@ public class wizardAttack : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("l"))
+        if (Input.GetButton("Spawn"))
         {
             Instantiate(enemy, summonPoint.position, summonPoint.rotation);
         }
@@ -35,12 +35,12 @@ public class wizardAttack : MonoBehaviour
             isAnimating = false;
         }
 
-        if (playerSP.flipX && !Input.GetKey("w") && !Input.GetKey("s") && !isAnimating)
+        if (playerSP.flipX && !Input.GetButton("Up") && !Input.GetButton("Down") && !isAnimating)
         {
             attackPoint.position = player2 - offset;
             attackPoint.transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
-        else if(!Input.GetKey("w") && !Input.GetKey("s") && !isAnimating)
+        else if(!Input.GetButtonDown("Up") && !Input.GetButton("Down") && !isAnimating)
         {
             attackPoint.position = player2 + offset;
             attackPoint.transform.eulerAngles = new Vector3(0f, 0f, 0f);
@@ -48,28 +48,28 @@ public class wizardAttack : MonoBehaviour
         
         player2 = player.position;
 
-        if (Input.GetKey("j") && !isAnimating)
+        if (Input.GetButton("Shoot") && !isAnimating)
         {
             Attack();
         }
 
-        if (Input.GetKey("w") && !playerSP.flipX && !Input.GetKey("s") && !isAnimating)
+        if (Input.GetButton("Up") && !playerSP.flipX && !Input.GetButton("Down") && !isAnimating)
         {
             attackPoint.position = player2 + new Vector2(0, .8f);
             attackPoint.transform.eulerAngles = new Vector3(0f, 0f, 90f);
         }
-        else if (Input.GetKey("w") && playerSP.flipX && !Input.GetKey("s") && !isAnimating)
+        else if (Input.GetButton("Up") && playerSP.flipX && !Input.GetButton("Down") && !isAnimating)
         {
             attackPoint.position = player2 + new Vector2(0, .8f);
             attackPoint.transform.eulerAngles = new Vector3(0f, 180f, 90f);
         }
 
-        if (Input.GetKey("s") && !playerSP.flipX && !Input.GetKey("w") && !isAnimating && !playerObj.GetComponent<playerMove>().isGrounded)
+        if (Input.GetButton("Down") && !playerSP.flipX && !Input.GetButton("Up") && !isAnimating && !playerObj.GetComponent<playerMove>().isGrounded)
         {
             attackPoint.position = player2 + new Vector2(-0.1f, -0.8f);
             attackPoint.transform.eulerAngles = new Vector3(0f, 0f, -90f);
         }
-        else if (Input.GetKey("s") && playerSP.flipX && !Input.GetKey("w") && !isAnimating && !playerObj.GetComponent<playerMove>().isGrounded)
+        else if (Input.GetButton("Down") && playerSP.flipX && !Input.GetButton("Up") && !isAnimating && !playerObj.GetComponent<playerMove>().isGrounded)
         {
             attackPoint.position = player2 + new Vector2(0.1f, -0.8f);
             attackPoint.transform.eulerAngles = new Vector3(0f, 180f, -90f);
@@ -78,7 +78,7 @@ public class wizardAttack : MonoBehaviour
 
     void Attack()
     {
-        
+        attackAnim.SetTrigger("Attack");
 
         Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 

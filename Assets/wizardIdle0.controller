@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: wizardDash
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4634423650910670309}
@@ -23,7 +23,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e0180efe5a1297b4d9d0aa1e5a357587, type: 2}
+  m_Motion: {fileID: 7400000, guid: 692ee132fb3b21948a60bdb2efdd9dc0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -372,8 +372,8 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.0053517222
-  m_TransitionOffset: 0.009174316
+  m_TransitionDuration: 0.07
+  m_TransitionOffset: 0.07
   m_ExitTime: 0.9919724
   m_HasExitTime: 0
   m_HasFixedDuration: 1
