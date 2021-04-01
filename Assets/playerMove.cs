@@ -29,9 +29,6 @@ public class playerMove : MonoBehaviour
     Vector3 startingPosition;
     float dashDistance;
     public GameObject screenflash;
-    public BoxCollider2D Collider;
-    public bool doubleJump = false;
-    bool canDoubleJump = false;
 
     //Grounded Vars
 
@@ -41,11 +38,6 @@ public class playerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (isGrounded && doubleJump)
-        {
-            canDoubleJump = true;
-        }
 
         if (!isDashing && Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0)
         {
@@ -89,13 +81,11 @@ public class playerMove : MonoBehaviour
 
         if (isDashing)
         {
-            Collider.size = new Vector2(.28f, .28f);
             anim.SetBool("isDashing", true);
             screenflash.SetActive(true);
         }
         else
         {
-            Collider.size = new Vector2(0.447f , 0.669f);
             anim.SetBool("isDashing", false);
             screenflash.SetActive(false);
         }
@@ -151,21 +141,13 @@ public class playerMove : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
         //Jumping
-        if(Input.GetButtonDown("Jump") && !isGrounded && canDoubleJump)
-        {
-            Jump();
-            canDoubleJump = false;
-        }
-        
-        
         if (Input.GetButtonDown("Jump") && hangCounter > 0f)
         {
             if (!isJumping)
             {
-                 Jump();
+                rb.velocity = new Vector2(rb.velocity.x, jump);
             }
         }
-
         if (Input.GetButtonUp("Jump") && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
@@ -228,11 +210,6 @@ public class playerMove : MonoBehaviour
 
         offset = groundCheck.position;
 
-    }
-
-    void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, jump);
     }
 
 }
