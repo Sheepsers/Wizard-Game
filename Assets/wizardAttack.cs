@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class wizardAttack : MonoBehaviour
 {
@@ -21,9 +23,14 @@ public class wizardAttack : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButton("Spawn"))
+        //if (Input.GetButton("Spawn"))
         {
-            Instantiate(enemy, summonPoint.position, summonPoint.rotation);
+            //Instantiate(enemy, summonPoint.position, summonPoint.rotation);
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene(0);
         }
 
         if (this.attackAnim.GetCurrentAnimatorStateInfo(0).IsTag("1"))

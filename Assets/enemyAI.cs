@@ -29,7 +29,6 @@ public class enemyAI : MonoBehaviour
     public Transform aircheck;
     bool forwardisSafe;
     public LayerMask groundmask;
-    bool ismoving;
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -66,12 +65,10 @@ public class enemyAI : MonoBehaviour
         if(rb.velocity.x > 0.5f || rb.velocity.x < -0.5f)
         {
             enemyAnim.SetBool("isMoving", true);
-            ismoving = true;
         }
         else
         {
             enemyAnim.SetBool("isMoving", false);
-            ismoving = false;
         }
 
         if(health == 0)

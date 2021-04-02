@@ -58,22 +58,28 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e2517c91dc739ce4dba3f6bd2007643d, type: 3}
   - {fileID: 21300000, guid: dc0f16a16394cda45960ad1f4e6b8254, type: 3}
   - {fileID: 21300000, guid: 9f41a9e13d8bd0f4481daff04279c66e, type: 3}
+  - {fileID: 21300000, guid: bd7951f14f9df3f49a995dfc13c36747, type: 3}
   - {fileID: 21300000, guid: 0d8ff122c2214a946bd368b13b3ba2a9, type: 3}
   - {fileID: 21300000, guid: af4ad4220648c9841baba9231773a644, type: 3}
   - {fileID: 21300000, guid: 8b203722930c3dc44a87e0978ef86575, type: 3}
+  - {fileID: 21300000, guid: 50f8cd22b7be8aa47a271f6d59902c67, type: 3}
   - {fileID: 21300000, guid: 3d521a42d20da954e83ad52088a7a297, type: 3}
   - {fileID: 21300000, guid: 18ebff421203a614bb08526f8e1c37ce, type: 3}
   - {fileID: 21300000, guid: dc1bdd52099276544a5d2619a994aa01, type: 3}
+  - {fileID: 21300000, guid: bddc1662091337540b37d1f5213144dc, type: 3}
   - {fileID: 21300000, guid: 52e43962f6e7f8940a6a1eba14c41d51, type: 3}
   - {fileID: 21300000, guid: 79f22f62f00094b4e94a939d3ecdbf69, type: 3}
+  - {fileID: 21300000, guid: 4ae3ea92a7a7c1c4891e20ecac9801c6, type: 3}
   - {fileID: 21300000, guid: 50e987b294735db4d9d83bcf5fa986af, type: 3}
   - {fileID: 21300000, guid: bc5dd1d2950b7574a92f9d44ae9b121e, type: 3}
   - {fileID: 21300000, guid: bdbf2df2133372840abf34ff11786cba, type: 3}
+  - {fileID: 21300000, guid: ec82981313e68134390c65d08f350de3, type: 3}
   - {fileID: 21300000, guid: 9998e4431be3d4c478bdd4320e98d3ad, type: 3}
   - {fileID: 21300000, guid: aba86f433da19c74fa035c52d7c4f761, type: 3}
   - {fileID: 21300000, guid: 416690634394ba44e95ddc27e368bee9, type: 3}
   - {fileID: 21300000, guid: 0d584d63699fd2b4e968d6894a55a517, type: 3}
   - {fileID: 21300000, guid: f30ce473c0f2e1044a86c8885e277313, type: 3}
+  - {fileID: 21300000, guid: ecb46893388512340b40dcac8e489f10, type: 3}
   - {fileID: 21300000, guid: 5225b2d3a92e5284dae3a3ee10455ac7, type: 3}
   - {fileID: 21300000, guid: f8e623e3e6cfa274cb1028b43ac316b2, type: 3}
   - {fileID: 21300000, guid: d057911454218b44cb30176c01c2b371, type: 3}
@@ -127,6 +133,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c4f62cdb5ad0ddb458431bad18749d49, type: 3}
   - {fileID: 21300000, guid: 026b17eb495a50f439b83a785b08d1e0, type: 3}
   - {fileID: 21300000, guid: 0194bd4cbc1ec24438a6571cde06a8c5, type: 3}
+  - {fileID: 21300000, guid: 33c5005ca8f5e5f42b42710caf3787bc, type: 3}
   - {fileID: 21300000, guid: 89d4838cffe1a594eb4f0d3650a4b34c, type: 3}
   - {fileID: 21300000, guid: 993635ccf4b72614b8ca16ddaef1c8b5, type: 3}
   - {fileID: 21300000, guid: 3204c9dc1b1dd574e81a4823345d335d, type: 3}
@@ -168,22 +175,28 @@ SpriteAtlas:
   - dashTP0004
   - dashTP0007
   - wizardAttackUp0015
+  - ElderBossIdle0004
   - enemyWalk0005
   - enemyAttack0009
   - wizardAttack0006
+  - ElderBossIdle0005
   - dashTP0013
   - enemyIdle0005
   - enemyAttack0010
+  - ElderBossIdle0006
   - wizardAttackUp0000
   - enemyWalk0004
+  - ElderBossIdle0003
   - enemyWalk0010
   - wizardAttack0008
   - wizardAttack0007
+  - ElderBossIdle0002
   - wizardAttackDown0012
   - wizardAttackUp0002
   - enemyWalk0000
   - wizardAttackUp0009
   - wizardAttackDown0002
+  - ElderBossIdle0000
   - wizardAttackUp0006
   - enemyIdle0004
   - dashTP0012
@@ -237,6 +250,7 @@ SpriteAtlas:
   - projectile0003
   - projectile0002
   - enemyIdle0003
+  - ElderBossIdle0001
   - enemyWalk0007
   - WizardTeleport0004
   - WizardTeleport0002

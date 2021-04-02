@@ -29,7 +29,16 @@ public class move : MonoBehaviour
 
         for (int i = 0; i < hitEnemies.Length; i++)
         {
-            hitEnemies[i].GetComponent<enemyAI>().TakeDamage(damage);
+            if (hitEnemies[i].GetComponent<enemyAI>())
+            {
+                hitEnemies[i].GetComponent<enemyAI>().TakeDamage(damage);
+            }
+            else if (hitEnemies[i].GetComponent<ElderBossAI>())
+            {
+                hitEnemies[i].GetComponent<ElderBossAI>().TakeDamage();
+            }
+            
+
             Instantiate(hitSparks, attackPoint.position, attackPoint.rotation);
             Destroy(bullet);
         }
