@@ -43,7 +43,7 @@ public class move : MonoBehaviour
             Destroy(bullet);
         }
 
-        if (lifetime < 1)
+        if (lifetime <= 0)
         {
             Destroy(bullet);
         }
@@ -58,6 +58,6 @@ public class move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        lifetime = lifetime - 1;
+        lifetime -= Time.deltaTime;
     }
 }

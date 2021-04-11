@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1532039176239268104}
   speed: 20
-  lifetime: 20
+  lifetime: 0.23
   life: 0
   bullet: {fileID: 7777772223960371722}
   attackPoint: {fileID: 3723638473631799700}
