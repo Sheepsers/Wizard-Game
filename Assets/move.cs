@@ -35,7 +35,7 @@ public class move : MonoBehaviour
             }
             else if (hitEnemies[i].GetComponent<ElderBossAI>())
             {
-                hitEnemies[i].GetComponent<ElderBossAI>().TakeDamage();
+                hitEnemies[i].GetComponent<ElderBossAI>().TakeDamage(damage);
             }
             
 

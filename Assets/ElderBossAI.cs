@@ -18,21 +18,34 @@ public class ElderBossAI : MonoBehaviour
     public float attackCooldown;
     float attackTimer;
     float randomAttack;
-
+    bool isAgainstWall;
+    public Transform wallcheck;
+    public LayerMask groundLayer;
+    public float health;
+    float teleportX;
+    float attackTime;
+    bool attackCooldownActive;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+        health = 50f;
     }
 
     private void FixedUpdate()
     {
-        if(attackTimer > 0)
+        isAgainstWall = Physics2D.OverlapCircle(wallcheck.position, 0.3f, groundLayer);
+
+        if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
         }
-        
+       
+        if (attackTime > 0f)
+        {
+            attackTime -= Time.deltaTime;
+        }
 
         if (bossArenaActive)
         {
@@ -47,30 +60,50 @@ public class ElderBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isAttacking)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        if (isAgainstWall)
+        {
+            teleportX = Random.Range(-34, -43);
+            transform.position = new Vector3(teleportX, transform.position.y, transform.position.z);
+        }
 
-        if(playerDistance < 2 && playerDistance > 0|| playerDistance > -2 && playerDistance < 0)
+        if (playerDistance < 1 && playerDistance > 0|| playerDistance > -1 && playerDistance < 0)
         {
             rb.velocity = new Vector2(0, 0);
-            if (!isAttacking)
+            if (!attackCooldownActive)
             {
                 bossAnim.SetTrigger("MeleeAttack");
+                attackTime = 0.4f;
                 attackTimer = attackCooldown;
             }
         }
 
-            if (attackTimer > 0)
+        if (attackTimer > 0f)
+        {
+            attackCooldownActive = true;
+        }
+        else
+        {
+            attackCooldownActive = false;
+            attackTimer = 0f;
+        }
+
+        if (attackTime > 0f)
         {
             isAttacking = true;
         }
         else
         {
             isAttacking = false;
-            attackTimer = 0;
+            attackTime = 0f;
         }
 
-        if (playerDistance < 7 && playerDistance > 6 && !isAttacking || playerDistance > -7 && playerDistance < -6 && !isAttacking)
+        if (playerDistance < 7 && playerDistance > 1.5f && !attackCooldownActive || playerDistance > -7 && playerDistance < -1.5f && !attackCooldownActive)
         {
-            isAttacking = true;
+            attackTime = 1f;
             attackTimer = attackCooldown;
             checkForAttack();
         }
@@ -79,7 +112,7 @@ public class ElderBossAI : MonoBehaviour
         {
             boss.transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        else if(playerDistance < 1)
+        else if(playerDistance < -1)
         {
             boss.transform.eulerAngles = new Vector3(0, 0, 0);
         }
@@ -123,38 +156,38 @@ public class ElderBossAI : MonoBehaviour
         playerDistance = boss.transform.position.x - player.transform.position.x;
         verticalPlayerDistance = boss.transform.position.x - player.transform.position.y;
 
-        if (playerDistance < 6 && playerDistance > 1)
+        if (playerDistance < 6 && playerDistance > 1 && !isAttacking)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
-        else if (playerDistance > -6 && playerDistance < -1)
+        else if (playerDistance > -6 && playerDistance < -1 && !isAttacking)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
 
-        if (playerDistance > 6 && playerDistance < 7)
+        if (playerDistance > 6 && playerDistance < 7 && !isAttacking)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);       
         }
-        else if(playerDistance > 7 && !isAttacking)
+        else if(playerDistance > 7 && !isAttacking && !isAttacking)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
 
 
-        if (playerDistance > -7 && playerDistance < -6)
+        if (playerDistance > -7 && playerDistance < -6 && !isAttacking)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if (playerDistance < -7 && !isAttacking)
+        else if (playerDistance < -7 && !isAttacking && !isAttacking)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
 
         }
 
     }
-        public void TakeDamage()
+        public void TakeDamage(float damage)
     {
-        Debug.Log("Ouch");
+        health -= damage;
     }
 }
