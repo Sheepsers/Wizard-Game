@@ -32,6 +32,10 @@ public class playerMove : MonoBehaviour
     public BoxCollider2D Collider;
     public bool doubleJump = false;
     bool canDoubleJump = false;
+    public GameObject Camera;
+    public GameObject dashParticles;
+    public Vector3 particleOffset;
+    
 
     //Grounded Vars
 
@@ -41,6 +45,17 @@ public class playerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if(!player.flipX)
+        {
+            dashParticles.transform.position = player.transform.position - particleOffset;
+            dashParticles.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            dashParticles.transform.eulerAngles = new Vector3(0, 0, 0);
+            dashParticles.transform.position = player.transform.position + particleOffset;
+        }
 
         if (isGrounded && doubleJump)
         {
@@ -88,13 +103,14 @@ public class playerMove : MonoBehaviour
     {
 
         if (isDashing)
-        {
+        {            
             Collider.size = new Vector2(.28f, .28f);
             anim.SetBool("isDashing", true);
             screenflash.SetActive(true);
         }
         else
         {
+ 
             Collider.size = new Vector2(0.447f , 0.669f);
             anim.SetBool("isDashing", false);
             screenflash.SetActive(false);
@@ -106,6 +122,8 @@ public class playerMove : MonoBehaviour
         //Dash Detection
         if (Input.GetButtonDown("Dash") && dashCooldown == 0)
         {
+            dashParticles.GetComponent<ParticleSystem>().Play();
+            Camera.GetComponent<ScreenShake>().StartShake(.1f, .1f);
             dashCounter = dashTime;
             dashCooldown = 0.7f;
         }
@@ -235,4 +253,8 @@ public class playerMove : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jump);
     }
 
+    void particlesOff()
+    {
+        dashParticles.SetActive(false);
+    }
 }

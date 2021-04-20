@@ -33,6 +33,5 @@ public class ScreenShake : MonoBehaviour
     {
         shakeTimeRemaining = length;
         shakePower = power;
-
     }
 }

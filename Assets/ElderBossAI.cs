@@ -119,14 +119,7 @@ public class ElderBossAI : MonoBehaviour
 
         activeRoom = GameObject.Find("Boundary");
 
-        if (activeRoom.transform.position == bossArena.transform.position)
-        {
-            bossArenaActive = true;
-        }
-        else
-        {
-            bossArenaActive = false;
-        }
+        Invoke("activate",0.3f);
 
     }
 
@@ -189,5 +182,17 @@ public class ElderBossAI : MonoBehaviour
         public void TakeDamage(float damage)
     {
         health -= damage;
+    }
+
+    void activate()
+    {
+        if (activeRoom.transform.position == bossArena.transform.position)
+        {
+            bossArenaActive = true;
+        }
+        else
+        {
+            bossArenaActive = false;
+        }
     }
 }
