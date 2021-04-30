@@ -9,10 +9,12 @@ public class HealthManagement : MonoBehaviour
     public GameObject Healthbar;
     public float damageCooldown;
     GameObject cameraShake;
+    Rigidbody2D rb;
 
     private void Awake()
     {
         cameraShake = GameObject.FindGameObjectWithTag("Camera");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(float damage)

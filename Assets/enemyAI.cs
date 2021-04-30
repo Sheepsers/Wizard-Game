@@ -29,6 +29,9 @@ public class enemyAI : MonoBehaviour
     public Transform aircheck;
     bool forwardisSafe;
     public LayerMask groundmask;
+    public GameObject MyBoundary;
+    GameObject ActiveBoundary;
+    bool isActive;
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -51,9 +54,30 @@ public class enemyAI : MonoBehaviour
     }
     void Update()
     {
+        ActiveBoundary = GameObject.Find("Boundary");
+
+        if(ActiveBoundary == MyBoundary)
+        {
+            isActive = true;
+        }
+        else
+        {
+            isActive = false;
+        }
+
+        if (isActive)
+        {
+            ActiveUpdate();
+        }
+
+
+    }
+    
+    void ActiveUpdate()
+    {
         if (!forwardisSafe)
         {
-            rb.velocity = new Vector2 (0, rb.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
         forwardisSafe = Physics2D.OverlapCircle(aircheck.position, 0.2f, groundmask);
@@ -62,7 +86,7 @@ public class enemyAI : MonoBehaviour
 
         Player = playerObj.GetComponent<Transform>();
 
-        if(rb.velocity.x > 0.5f || rb.velocity.x < -0.5f)
+        if (rb.velocity.x > 0.5f || rb.velocity.x < -0.5f)
         {
             enemyAnim.SetBool("isMoving", true);
         }
@@ -71,12 +95,13 @@ public class enemyAI : MonoBehaviour
             enemyAnim.SetBool("isMoving", false);
         }
 
-        if(health == 0)
+        if (health == 0)
         {
             Destroy(yourself);
         }
 
-        if(stunTimer > 0){
+        if (stunTimer > 0)
+        {
             isStunned = true;
         }
         else
@@ -95,16 +120,16 @@ public class enemyAI : MonoBehaviour
             inRange = false;
         }
 
-        if(playerDistance < 0 && inRange)
+        if (playerDistance < 0 && inRange)
         {
             Enemy.eulerAngles = new Vector3(0, 180, 0);
-            
-            if (forwardisSafe) 
+
+            if (forwardisSafe)
             {
                 rb.velocity = new Vector2(Speed, rb.velocity.y);
             }
         }
-       
+
         if (playerDistance > 0 && inRange)
         {
             Enemy.eulerAngles = new Vector3(0, 0, 0);
@@ -118,7 +143,7 @@ public class enemyAI : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        
+
         if (playerDistance > -0.7 && playerDistance < 0.7 && inRange && !isStunned)
         {
             if (attackCooldown == 0)
@@ -135,8 +160,7 @@ public class enemyAI : MonoBehaviour
         }
 
     }
-    
-    
+
     public void TakeDamage(float damage)
     {
         if (enemySP.flipX)

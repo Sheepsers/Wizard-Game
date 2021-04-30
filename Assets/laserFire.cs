@@ -7,6 +7,7 @@ public class laserFire : MonoBehaviour
     Animator LaserAnim;
     public LayerMask playerLayer;
     BoxCollider2D laserCollider;
+    public float windup = 1;
 
     // Start is called before the first frame update
 
@@ -14,12 +15,15 @@ public class laserFire : MonoBehaviour
     {
         LaserAnim = GetComponent<Animator>();
         laserCollider = GetComponent<BoxCollider2D>();
-        LaserAnim.SetTrigger("Fire");
+        if (windup < 0)
+        {
+            LaserAnim.SetTrigger("Fire");
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        windup -= Time.deltaTime;
     }
 }

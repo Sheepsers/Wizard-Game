@@ -100,6 +100,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d057911454218b44cb30176c01c2b371, type: 3}
   - {fileID: 21300000, guid: 5c068724339b60f499e8bb6a883622a1, type: 3}
   - {fileID: 21300000, guid: d853d3641477ccc4480e9d77c63a666e, type: 3}
+  - {fileID: 21300000, guid: 44e50774a7544e84b9ad1c15685619b4, type: 3}
   - {fileID: 21300000, guid: 3d487094189223643bed5defdfc34622, type: 3}
   - {fileID: 21300000, guid: 8f093c94a80d43649a78b5ddd26d1127, type: 3}
   - {fileID: 21300000, guid: a0c817a4869075e4d92ad396eaa220fa, type: 3}
@@ -124,6 +125,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f8621607bf08b5b49b8ff592a6516b64, type: 3}
   - {fileID: 21300000, guid: d21e6b171e9f85d4aa8e5aec5499e096, type: 3}
   - {fileID: 21300000, guid: 5a2e9927f246c6e43976d6ec9be50181, type: 3}
+  - {fileID: 21300000, guid: 92ec3f3701623974d82c9722ecd3258e, type: 3}
   - {fileID: 21300000, guid: 1e0ab0474b567e445850ca9bb0b5a6c6, type: 3}
   - {fileID: 21300000, guid: 6ec495670ac9ba24c91477472c601e52, type: 3}
   - {fileID: 21300000, guid: 0998886760b3b574abef4e075bcec0ee, type: 3}
@@ -163,6 +165,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d58aa73b4ae2edc4e9b6de7c23a7ed5e, type: 3}
   - {fileID: 21300000, guid: 6e2db09b13779fb49881c3b865ccdb9f, type: 3}
   - {fileID: 21300000, guid: 1119349b043714a439e1987504a03533, type: 3}
+  - {fileID: 21300000, guid: bb290d9b3e5cdfc43838165a0c2098f7, type: 3}
   - {fileID: 21300000, guid: b2d111ab080c4504b81e5852ae4fad67, type: 3}
   - {fileID: 21300000, guid: d92fdfab2c664c248bbe74f94acef253, type: 3}
   - {fileID: 21300000, guid: 76b438dba97d00a49beb04516f8ca0ed, type: 3}
@@ -194,9 +197,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: eda82b6e136da2f429ad17b310ea439b, type: 3}
   - {fileID: 21300000, guid: 0c6e52ae3908f744d9c6c76d53f7f07e, type: 3}
   - {fileID: 21300000, guid: 4cb31eae5ecb91247ad54058a8c012fc, type: 3}
+  - {fileID: 21300000, guid: 9047c9be0a4b26142819f315934c6869, type: 3}
   - {fileID: 21300000, guid: 0e5661def5549b540a4150404db15091, type: 3}
   - {fileID: 21300000, guid: 923689ee6ddd0214abe545e2645846bc, type: 3}
   - {fileID: 21300000, guid: f7731aee1e0a25f45a6ee3ce69187783, type: 3}
+  - {fileID: 21300000, guid: 409181febe34f6540ba2005ad0f84655, type: 3}
   - {fileID: 21300000, guid: 17a1edfe842aca04eb0b5f35a1414dc7, type: 3}
   - {fileID: 21300000, guid: f1e4b81f116cc8043a642405b83af39d, type: 3}
   - {fileID: 21300000, guid: 5ce8a62fb33129449bef633359bc83b4, type: 3}
@@ -205,6 +210,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d80b8e3fbe7aad744ada563e213fd3b9, type: 3}
   - {fileID: 21300000, guid: 2bd87f3f9c487b04f88be6b63c34ca83, type: 3}
   - {fileID: 21300000, guid: f5c3514f6af59c44c9f24718f5e983aa, type: 3}
+  - {fileID: 21300000, guid: 199fd44fed88eb54ab6b00cbfda03f82, type: 3}
   - {fileID: 21300000, guid: d095574f748d4234c8d845a4e6de581f, type: 3}
   - {fileID: 21300000, guid: 3b55805ff337a874bbf999051e5acc66, type: 3}
   - {fileID: 21300000, guid: 4ef8bb5faccb0b144bb19fb4d3baeaf4, type: 3}
@@ -269,6 +275,7 @@ SpriteAtlas:
   - dashTP0012
   - enemyWalk0008
   - WizardTeleport0007
+  - LaserWindUp0002
   - ElderBossSummon0000
   - ElderBossMelee0006
   - enemyIdle0000
@@ -293,6 +300,7 @@ SpriteAtlas:
   - ElderBossWalk0006
   - wizardAttackUp0012
   - wizardAttackDown0000
+  - LaserWindUp0005
   - projectile0005
   - wizardAttackUp0014
   - dashTP0014
@@ -332,6 +340,7 @@ SpriteAtlas:
   - ElderBossMelee0000
   - wizardAttackDown0009
   - projectile0000
+  - LaserWindUp0000
   - WizardTeleport0006
   - wizardAttack0002
   - wizardAttack0004
@@ -363,9 +372,11 @@ SpriteAtlas:
   - ElderBossMelee0008
   - projectile0007
   - enemyWalk0006
+  - LaserWindUp0004
   - projectile0009
   - dashTP0006
   - WizardTeleport0001
+  - LaserWindUp0001
   - ElderBossLaserFire0013
   - ElderBossWalk0012
   - dashTP0015
@@ -374,6 +385,7 @@ SpriteAtlas:
   - ElderBossWalk0013
   - wizardAttackUp0004
   - ElderBossSummon0004
+  - LaserWindUp0003
   - enemyWalk0002
   - enemyAttack0002
   - enemyWalk0009

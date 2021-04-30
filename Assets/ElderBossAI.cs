@@ -25,6 +25,14 @@ public class ElderBossAI : MonoBehaviour
     float teleportX;
     float attackTime;
     bool attackCooldownActive;
+    public Transform summonPoint1;
+    public Transform summonPoint2;
+    public Transform summonPoint3;
+    public Transform summonPoint4;
+    public GameObject laser;
+    public float meeleeDamage;
+    public LayerMask PlayerMask;
+    public Transform attackPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -76,8 +84,10 @@ public class ElderBossAI : MonoBehaviour
             if (!attackCooldownActive)
             {
                 bossAnim.SetTrigger("MeleeAttack");
+                Invoke("meeleeAttack", 0.5f);
                 attackTime = 0.4f;
                 attackTimer = attackCooldown;
+
             }
         }
 
@@ -134,6 +144,7 @@ public class ElderBossAI : MonoBehaviour
     void Attack()
     {
         bossAnim.SetTrigger("Attack");
+        Invoke("summonLasers", 1f);
     }
 
     void FollowPlayer()
@@ -193,6 +204,36 @@ public class ElderBossAI : MonoBehaviour
         else
         {
             bossArenaActive = false;
+        }
+    }
+
+    void summonLasers()
+    {
+        summonPoint1.position = new Vector3(Random.Range(0, 3), bossArena.transform.position.y + 5, 0) + player.transform.position;
+        summonPoint2.position = new Vector3(Random.Range(3, 7), bossArena.transform.position.y + 5, 0) + player.transform.position;
+        summonPoint3.position = new Vector3(Random.Range(0, -3), bossArena.transform.position.y + 5, 0) + player.transform.position;
+        summonPoint4.position = new Vector3(Random.Range(-3, -7), bossArena.transform.position.y + 5, 0) + player.transform.position;
+
+        summonPoint1.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
+        summonPoint2.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
+        summonPoint3.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
+        summonPoint4.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
+
+        Instantiate(laser, summonPoint1.position, summonPoint1.rotation);
+        Instantiate(laser, summonPoint2.position, summonPoint2.rotation);
+        Instantiate(laser, summonPoint3.position, summonPoint3.rotation);
+        Instantiate(laser, summonPoint4.position, summonPoint4.rotation);
+    }
+
+    void meeleeAttack()
+    {
+        Physics2D.OverlapCircleAll(attackPoint.position, 0.7f, PlayerMask);
+
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(attackPoint.position, 0.7f, PlayerMask);
+
+        for (int i = 0; i < hitPlayers.Length; i++)
+        {
+            hitPlayers[i].GetComponent<HealthManagement>().TakeDamage(meeleeDamage);
         }
     }
 }
