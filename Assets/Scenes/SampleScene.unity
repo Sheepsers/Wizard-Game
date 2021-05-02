@@ -295,7 +295,7 @@ MonoBehaviour:
   rb: {fileID: 44210818}
   boss: {fileID: 44210815}
   speed: 2
-  attackCooldown: 1
+  attackCooldown: 1.3
   wallcheck: {fileID: 232969187}
   groundLayer:
     serializedVersion: 2
@@ -6336,7 +6336,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012759328, y: 0.0037555099}
+  m_Offset: {x: 0.008605957, y: -0.022628069}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6347,7 +6347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44709945, y: 0.6692544}
+  m_Size: {x: 0.32958984, y: 0.57246256}
   m_EdgeRadius: 0
 --- !u!212 &599831926
 SpriteRenderer:
@@ -6407,7 +6407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599831923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24, y: -5.6, z: 0}
+  m_LocalPosition: {x: -24, y: -5.639, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 362181404}
@@ -24263,7 +24263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782325825}
   m_LocalRotation: {x: -0, y: -0, z: -0.003739268, w: 0.999993}
-  m_LocalPosition: {x: 0.01, y: -0.02, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0.114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 599831927}

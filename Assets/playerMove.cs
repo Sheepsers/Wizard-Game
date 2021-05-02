@@ -111,7 +111,7 @@ public class playerMove : MonoBehaviour
         else
         {
  
-            Collider.size = new Vector2(0.447f , 0.669f);
+            Collider.size = new Vector2(0.3295898f, 0.5724626f);
             anim.SetBool("isDashing", false);
             screenflash.SetActive(false);
         }

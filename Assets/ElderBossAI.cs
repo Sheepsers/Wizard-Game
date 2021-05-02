@@ -63,6 +63,10 @@ public class ElderBossAI : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
+        if(health == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -74,8 +78,9 @@ public class ElderBossAI : MonoBehaviour
         }
         if (isAgainstWall)
         {
+            bossAnim.SetTrigger("Leave");
             teleportX = Random.Range(-34, -43);
-            transform.position = new Vector3(teleportX, transform.position.y, transform.position.z);
+            Invoke("Leave", 1f);
         }
 
         if (playerDistance < 1 && playerDistance > 0|| playerDistance > -1 && playerDistance < 0)
@@ -209,15 +214,15 @@ public class ElderBossAI : MonoBehaviour
 
     void summonLasers()
     {
-        summonPoint1.position = new Vector3(Random.Range(0, 3), bossArena.transform.position.y + 5, 0) + player.transform.position;
-        summonPoint2.position = new Vector3(Random.Range(3, 7), bossArena.transform.position.y + 5, 0) + player.transform.position;
-        summonPoint3.position = new Vector3(Random.Range(0, -3), bossArena.transform.position.y + 5, 0) + player.transform.position;
-        summonPoint4.position = new Vector3(Random.Range(-3, -7), bossArena.transform.position.y + 5, 0) + player.transform.position;
+        summonPoint1.position = new Vector3(Random.Range(0, 3), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x,0,0);
+        summonPoint2.position = new Vector3(Random.Range(3, 7), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
+        summonPoint3.position = new Vector3(Random.Range(0, -3), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
+        summonPoint4.position = new Vector3(Random.Range(-3, -7), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
 
-        summonPoint1.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
-        summonPoint2.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
-        summonPoint3.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
-        summonPoint4.eulerAngles = new Vector3(0, 0, Random.Range(-30, 30));
+        summonPoint1.eulerAngles = new Vector3(0, 0, Random.Range(-15, 15));
+        summonPoint2.eulerAngles = new Vector3(0, 0, Random.Range(-15, 15));
+        summonPoint3.eulerAngles = new Vector3(0, 0, Random.Range(-15, 15));
+        summonPoint4.eulerAngles = new Vector3(0, 0, Random.Range(-15, 15));
 
         Instantiate(laser, summonPoint1.position, summonPoint1.rotation);
         Instantiate(laser, summonPoint2.position, summonPoint2.rotation);
@@ -235,5 +240,9 @@ public class ElderBossAI : MonoBehaviour
         {
             hitPlayers[i].GetComponent<HealthManagement>().TakeDamage(meeleeDamage);
         }
+    }
+    void Leave()
+    {
+        transform.position = new Vector3(teleportX, transform.position.y, transform.position.z);
     }
 }

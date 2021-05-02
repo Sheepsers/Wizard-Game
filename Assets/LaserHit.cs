@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserHit : MonoBehaviour
 {
-    GameObject Player;
+    GameObject wizard;
     public float damage;
     public float lifetime = 3;
     public Animator laserAnim;
@@ -12,7 +12,7 @@ public class LaserHit : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Player = GameObject.Find("Player");
+        wizard = GameObject.Find("Player");
         lifetime -= Time.deltaTime;
         if(lifetime < 0)
         {
@@ -28,20 +28,19 @@ public class LaserHit : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D player)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(lifetime < 0.8)
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player") && lifetime < 0.6f && lifetime > 0.3f)
         {
-            Player.GetComponent<HealthManagement>().TakeDamage(damage);
+            wizard.GetComponent<HealthManagement>().TakeDamage(damage);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D player)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (lifetime < 0.8)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && lifetime < 0.6f && lifetime > 0.3f)
         {
-            Player.GetComponent<HealthManagement>().TakeDamage(damage);
+            wizard.GetComponent<HealthManagement>().TakeDamage(damage);
         }
     }
-
 }
