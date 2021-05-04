@@ -87,14 +87,14 @@ public class wizardAttack : MonoBehaviour
     {
         attackAnim.SetTrigger("Attack");
 
-        Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        //Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        for (int i = 0; i < hitEnemies.Length; i++)
-        {
-            hitEnemies[i].GetComponent<enemyAI>().TakeDamage(damage);
-        }
+        //for (int i = 0; i < hitEnemies.Length; i++)
+        //{
+            //hitEnemies[i].GetComponent<enemyAI>().TakeDamage(damage);
+        //}
 
     }
 

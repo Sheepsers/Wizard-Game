@@ -33,12 +33,16 @@ public class ElderBossAI : MonoBehaviour
     public float meeleeDamage;
     public LayerMask PlayerMask;
     public Transform attackPoint;
+    public float mintpdistance;
+    public float maxtpdistance;
+    public float maxhealth;
+    public GameObject door;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        health = 50f;
+        health = maxhealth;
     }
 
     private void FixedUpdate()
@@ -65,6 +69,7 @@ public class ElderBossAI : MonoBehaviour
         }
         if(health == 0)
         {
+            door.SetActive(false);
             Destroy(this.gameObject);
         }
     }
@@ -79,7 +84,7 @@ public class ElderBossAI : MonoBehaviour
         if (isAgainstWall)
         {
             bossAnim.SetTrigger("Leave");
-            teleportX = Random.Range(-34, -43);
+            teleportX = Random.Range(bossArena.transform.position.x - mintpdistance, bossArena.transform.position.x + maxtpdistance);
             Invoke("Leave", 1f);
         }
 

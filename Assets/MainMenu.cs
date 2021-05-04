@@ -19,5 +19,9 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
 
     }
+    public void ChallengeMode()
+    {
+        SceneManager.LoadScene(2);
+    }
 
 }
