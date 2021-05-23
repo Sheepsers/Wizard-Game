@@ -103,6 +103,10 @@ MonoBehaviour:
   groundmask:
     serializedVersion: 2
     m_Bits: 512
+  MyBoundary: {fileID: 0}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &629972569722232452
 Rigidbody2D:
   serializedVersion: 4
@@ -123,7 +127,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &629972569722232453
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ public class playerMove : MonoBehaviour
     public GameObject Camera;
     public GameObject dashParticles;
     public Vector3 particleOffset;
+    public GameObject audioManager;
     
 
     //Grounded Vars
@@ -122,6 +123,7 @@ public class playerMove : MonoBehaviour
         //Dash Detection
         if (Input.GetButtonDown("Dash") && dashCooldown == 0)
         {
+            GameObject.Find("Audio Manager").GetComponent<audiomanager>().Play("PlayerJump");
             dashParticles.GetComponent<ParticleSystem>().Play();
             Camera.GetComponent<ScreenShake>().StartShake(.1f, .1f);
             dashCounter = dashTime;
@@ -166,7 +168,7 @@ public class playerMove : MonoBehaviour
         
 
         //Check if Grounded
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
 
         //Jumping
         if(Input.GetButtonDown("Jump") && !isGrounded && canDoubleJump)

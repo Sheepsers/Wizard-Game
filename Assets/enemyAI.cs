@@ -32,6 +32,7 @@ public class enemyAI : MonoBehaviour
     public GameObject MyBoundary;
     GameObject ActiveBoundary;
     bool isActive;
+    public LayerMask enemyLayers;
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -69,18 +70,20 @@ public class enemyAI : MonoBehaviour
         {
             ActiveUpdate();
         }
-
-
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
     }
     
     void ActiveUpdate()
     {
+        forwardisSafe = Physics2D.OverlapCircle(aircheck.position, 0.2f, groundmask) && !Physics2D.OverlapCircle(attackPoint.position, 0.1f, enemyLayers);
+
         if (!forwardisSafe)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-
-        forwardisSafe = Physics2D.OverlapCircle(aircheck.position, 0.2f, groundmask);
 
         playerObj = GameObject.Find("Player");
 
@@ -124,21 +127,32 @@ public class enemyAI : MonoBehaviour
         {
             Enemy.eulerAngles = new Vector3(0, 180, 0);
 
-            if (forwardisSafe)
+            if (!forwardisSafe)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+            else
             {
                 rb.velocity = new Vector2(Speed, rb.velocity.y);
             }
         }
+    
 
         if (playerDistance > 0 && inRange)
         {
             Enemy.eulerAngles = new Vector3(0, 0, 0);
 
-            if (forwardisSafe)
+            if (!forwardisSafe)
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
+            else
             {
                 rb.velocity = new Vector2(-Speed, rb.velocity.y);
             }
         }
+    
+    
         if (!inRange)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
