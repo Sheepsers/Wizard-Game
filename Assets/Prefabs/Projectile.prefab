@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1532039176239268104}
-  speed: 20
+  speed: 30
   lifetime: 0.23
   life: 0
   bullet: {fileID: 7777772223960371722}
@@ -250,7 +250,7 @@ MonoBehaviour:
   damage: 1
   enemies:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2560
   Wall: 0
   walls:
     serializedVersion: 2

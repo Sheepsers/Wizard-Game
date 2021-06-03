@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScreenShake : MonoBehaviour
 {
     float shakeTimeRemaining, shakePower;
+    public Transform cam;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class ScreenShake : MonoBehaviour
 
             float xShake = Random.Range(-1f, 1f) * shakePower;
             float yShake = Random.Range(-1f, 1f) * shakePower;
-            transform.position += new Vector3(xShake, yShake, 0);
+            cam.position += new Vector3(xShake, yShake, 0);
         }
     }
 

@@ -8,12 +8,10 @@ public class HealthManagement : MonoBehaviour
     public float Health;
     public GameObject Healthbar;
     public float damageCooldown;
-    GameObject cameraShake;
     Rigidbody2D rb;
 
     private void Awake()
     {
-        cameraShake = GameObject.FindGameObjectWithTag("Camera");
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -23,7 +21,7 @@ public class HealthManagement : MonoBehaviour
         {
             Health -= damage;
             damageCooldown = 2;
-            cameraShake.GetComponent<ScreenShake>().StartShake(0.2f, 0.2f);
+            cameraShake.Instance.ShakeCamera(0.2f, 5f);
         }
         Healthbar.GetComponent<healthBar>().ManageHealth(Health);
     }

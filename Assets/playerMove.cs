@@ -36,7 +36,8 @@ public class playerMove : MonoBehaviour
     public GameObject dashParticles;
     public Vector3 particleOffset;
     public GameObject audioManager;
-    
+    float jumpBuffer;
+
 
     //Grounded Vars
 
@@ -94,6 +95,11 @@ public class playerMove : MonoBehaviour
             rb.velocity = new Vector2(dashSpeed, 0);
         }
 
+        if(jumpBuffer > 0)
+        {
+            jumpBuffer -= Time.deltaTime;
+        }
+
 
 
     }
@@ -105,7 +111,7 @@ public class playerMove : MonoBehaviour
 
         if (isDashing)
         {            
-            Collider.size = new Vector2(.28f, .28f);
+            Collider.size = new Vector2(.32f, .28f);
             anim.SetBool("isDashing", true);
             screenflash.SetActive(true);
         }
@@ -125,7 +131,7 @@ public class playerMove : MonoBehaviour
         {
             GameObject.Find("Audio Manager").GetComponent<audiomanager>().Play("PlayerJump");
             dashParticles.GetComponent<ParticleSystem>().Play();
-            Camera.GetComponent<ScreenShake>().StartShake(.1f, .1f);
+            cameraShake.Instance.ShakeCamera(0.2f, 3f);
             dashCounter = dashTime;
             dashCooldown = 0.7f;
         }
@@ -168,7 +174,7 @@ public class playerMove : MonoBehaviour
         
 
         //Check if Grounded
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer);
 
         //Jumping
         if(Input.GetButtonDown("Jump") && !isGrounded && canDoubleJump)
@@ -189,6 +195,16 @@ public class playerMove : MonoBehaviour
         if (Input.GetButtonUp("Jump") && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
+        }
+
+        if(Input.GetButtonDown("Jump") && !isGrounded)
+        {
+            jumpBuffer = 0.1f;
+        }
+
+        if(isGrounded && jumpBuffer > 0)
+        {
+            Jump();
         }
 
         //Left Right Movement

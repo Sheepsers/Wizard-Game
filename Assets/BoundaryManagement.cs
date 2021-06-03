@@ -10,13 +10,20 @@ public class BoundaryManagement : MonoBehaviour
         boundary.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        boundary.SetActive(true);
+        if (collision.gameObject.tag == "Player")
+        {
+            boundary.SetActive(true);
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        boundary.SetActive(false);
+        if(collision.gameObject.tag == "Player")
+        {
+            boundary.SetActive(false);
+        }
     }
 }

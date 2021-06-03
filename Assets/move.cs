@@ -14,46 +14,42 @@ public class move : MonoBehaviour
     public bool Wall;
     public LayerMask walls;
     public GameObject hitSparks;
+    Transform previousPos;
 
-    private void Start()
+
+    private void Awake()
     {
         rb.velocity = transform.right * speed;
+        previousPos = transform;
     }
 
     // Update is called once per frame       
     void Update()
     {
-        Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemies);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemies);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(180,0,0), -1f, enemies);
 
-        for (int i = 0; i < hitEnemies.Length; i++)
+        if (hit)
         {
-            if (hitEnemies[i].GetComponent<enemyAI>())
+            if(hit.collider.gameObject.GetComponent<enemyAI>() != null)
             {
-                hitEnemies[i].GetComponent<enemyAI>().TakeDamage(damage);
+                hit.collider.gameObject.GetComponent<enemyAI>().TakeDamage(damage);
             }
-            else if (hitEnemies[i].GetComponent<ElderBossAI>())
+            else if (hit.collider.gameObject.GetComponent<ElderBossAI>() != null)
             {
-                hitEnemies[i].GetComponent<ElderBossAI>().TakeDamage(damage);
+                hit.collider.gameObject.GetComponent<ElderBossAI>().TakeDamage(damage);
             }
-            
 
-            Instantiate(hitSparks, attackPoint.position, attackPoint.rotation);
+            Instantiate(hitSparks, hit.point, attackPoint.rotation);
             Destroy(bullet);
         }
+
+        previousPos = transform;
 
         if (lifetime <= 0)
         {
             Destroy(bullet);
         }
-        Wall = Physics2D.OverlapCircle(attackPoint.position, 0.3f, walls);
-        if (Wall)
-        {
-            Instantiate(hitSparks, attackPoint.position, attackPoint.rotation);
-            Destroy(bullet);
-        }
-    
     }
 
     private void FixedUpdate()
