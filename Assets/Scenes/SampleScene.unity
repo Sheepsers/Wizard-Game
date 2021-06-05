@@ -982,7 +982,7 @@ PrefabInstance:
     - target: {fileID: 7739386841918919602, guid: 9b29a0082f3676846a28256147047861,
         type: 3}
       propertyPath: m_Name
-      value: Boundary Manager 1 (1)
+      value: Long Room
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b29a0082f3676846a28256147047861, type: 3}
