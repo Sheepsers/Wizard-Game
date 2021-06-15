@@ -37,6 +37,8 @@ public class ElderBossAI : MonoBehaviour
     public float maxtpdistance;
     public float maxhealth;
     public GameObject door;
+    public GameObject door2;
+    public Transform LaserPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +72,7 @@ public class ElderBossAI : MonoBehaviour
         if(health == 0)
         {
             door.SetActive(false);
+            door2.SetActive(false);
             Destroy(this.gameObject);
         }
     }
@@ -219,10 +222,10 @@ public class ElderBossAI : MonoBehaviour
 
     void summonLasers()
     {
-        summonPoint1.position = new Vector3(Random.Range(0, 3), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x,0,0);
-        summonPoint2.position = new Vector3(Random.Range(3, 7), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
-        summonPoint3.position = new Vector3(Random.Range(0, -3), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
-        summonPoint4.position = new Vector3(Random.Range(-3, -7), bossArena.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
+        summonPoint1.position = new Vector3(Random.Range(0, 3), LaserPoint.transform.position.y, 0) + new Vector3(player.transform.position.x,0,0);
+        summonPoint2.position = new Vector3(Random.Range(3, 7), LaserPoint.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
+        summonPoint3.position = new Vector3(Random.Range(0, -3), LaserPoint.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
+        summonPoint4.position = new Vector3(Random.Range(-3, -7), LaserPoint.transform.position.y, 0) + new Vector3(player.transform.position.x, 0, 0);
 
         summonPoint1.eulerAngles = new Vector3(0, 0, Random.Range(-15, 15));
         summonPoint2.eulerAngles = new Vector3(0, 0, Random.Range(-15, 15));
