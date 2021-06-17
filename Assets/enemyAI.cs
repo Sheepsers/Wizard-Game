@@ -129,7 +129,7 @@ public class enemyAI : MonoBehaviour
 
             if (!forwardisSafe)
             {
-                rb.velocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
             else
             {
@@ -144,7 +144,7 @@ public class enemyAI : MonoBehaviour
 
             if (!forwardisSafe)
             {
-                rb.velocity = new Vector2(0, 0);
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
             else
             {

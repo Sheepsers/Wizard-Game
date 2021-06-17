@@ -6,7 +6,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/bfs/Unity Stuff/Itch.IO Build;C:/Users/bfs/Unity Stuff/wbgl with boss;C:/Users/bfs/Unity Stuff/webgl build w boss;C:/Users/bfs/Unity Stuff/Final Webgl Build;;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/tilden/Documents/GitHub/Wizard Game WebGL #2;C:/Users/tilden/Documents/GitHub/Wizard Game WebGL #1;C:/Users/bfs/Unity Stuff/Itch.IO Build;C:/Users/bfs/Unity Stuff/wbgl with boss;C:/Users/bfs/Unity Stuff/webgl build w boss;C:/Users/bfs/Unity Stuff/Final Webgl Build;;;;\"}"
             }
         ]
     }
