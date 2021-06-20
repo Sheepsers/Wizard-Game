@@ -40,11 +40,16 @@ public class ElderBossAI : MonoBehaviour
     public GameObject door2;
     public Transform LaserPoint;
 
+    Material matWhite;
+    Material matDefault;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         health = maxhealth;
+        matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
+        matDefault = gameObject.GetComponent<SpriteRenderer>().material;
     }
 
     private void FixedUpdate()
@@ -205,7 +210,10 @@ public class ElderBossAI : MonoBehaviour
     }
         public void TakeDamage(float damage)
     {
+        gameObject.GetComponent<SpriteRenderer>().material = matWhite;
         health -= damage;
+        cameraShake.Instance.ShakeCamera(0.1f, 1f);
+        Invoke("returnToDefault", 0.1f);
     }
 
     void activate()
@@ -252,5 +260,9 @@ public class ElderBossAI : MonoBehaviour
     void Leave()
     {
         transform.position = new Vector3(teleportX, transform.position.y, transform.position.z);
+    }
+    void returnToDefault()
+    {
+        gameObject.GetComponent<SpriteRenderer>().material = matDefault;
     }
 }

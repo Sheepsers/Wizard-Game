@@ -23,19 +23,22 @@ public class CutSceneTrigger : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D player)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        bossDoor.SetActive(true);
-        player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-        boss.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-        player.GetComponent<wizardAttack>().enabled = false;
-        player.GetComponent<playerMove>().enabled = false;
-        boss.GetComponent<ElderBossAI>().enabled = false;
-        bosscam.Priority = 1;
-        cam.Priority = 0;
-        boss.GetComponent<Animator>().SetBool("isMoving",false);
-        boss.GetComponent<Animator>().SetTrigger("Idle");
-        Invoke("priority", 3f);
+        if (collision.CompareTag("Player"))
+        {
+            bossDoor.SetActive(true);
+            player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+            boss.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+            player.GetComponent<wizardAttack>().enabled = false;
+            player.GetComponent<playerMove>().enabled = false;
+            boss.GetComponent<ElderBossAI>().enabled = false;
+            bosscam.Priority = 1;
+            cam.Priority = 0;
+            boss.GetComponent<Animator>().SetBool("isMoving", false);
+            boss.GetComponent<Animator>().SetTrigger("Idle");
+            Invoke("priority", 3f);
+        }
     }
 
     void priority()

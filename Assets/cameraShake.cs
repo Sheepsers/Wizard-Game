@@ -21,7 +21,6 @@ public class cameraShake : MonoBehaviour
 
     public void ShakeCamera(float length, float power)
     {
-        Debug.Log(length + " " + power);
         noise.m_AmplitudeGain = power;
         shakeTime = length;
     }

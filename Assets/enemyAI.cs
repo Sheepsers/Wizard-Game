@@ -34,6 +34,20 @@ public class enemyAI : MonoBehaviour
     bool isActive;
     public LayerMask enemyLayers;
 
+    Material matWhite;
+    Material matDefault;
+
+    private void Start()
+    {
+        matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
+        matDefault = enemySP.material;
+    }
+
+    void returnToDefault()
+    {
+        enemySP.material = matDefault;
+    }
+
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -177,6 +191,9 @@ public class enemyAI : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        enemySP.material = matWhite;
+        cameraShake.Instance.ShakeCamera(0.1f, 1f);
+
         if (enemySP.flipX)
         {
             health -= damage;
@@ -188,6 +205,7 @@ public class enemyAI : MonoBehaviour
             health -= damage;
             rb.AddForce(transform.right * kb);
             stunTimer = stunTime;
+            Invoke("returnToDefault", 0.1f);
         }
     }
     void Attack()
