@@ -9,16 +9,24 @@ public class HealthManagement : MonoBehaviour
     public GameObject Healthbar;
     public float damageCooldown;
     Rigidbody2D rb;
+    Material matWhite;
+    Material matDefault;
+    SpriteRenderer sr;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
+        matDefault = sr.material;
     }
 
     public void TakeDamage(float damage)
     {
         if(damageCooldown == 0)
         {
+            sr.material = matWhite;
+            Invoke("returnToDefault", 0.1f);
             Health -= damage;
             damageCooldown = 2;
             cameraShake.Instance.ShakeCamera(0.2f, 5f);
@@ -46,5 +54,9 @@ public class HealthManagement : MonoBehaviour
         {
             damageCooldown = 0;
         }
+    }
+    void returnToDefault()
+    {
+        sr.material = matDefault;
     }
 }

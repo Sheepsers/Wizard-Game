@@ -8,23 +8,14 @@ public class damage : MonoBehaviour
     public float spikeDamage = 5f;
     public GameObject lastRespawnPoint;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             player.GetComponent<HealthManagement>().damageCooldown = 0;
             player.GetComponent<HealthManagement>().TakeDamage(spikeDamage);
+            player.GetComponent<playerMove>().enabled = false;
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             Invoke("ResetPlayer", 0.2f);
         }
 
@@ -33,5 +24,6 @@ public class damage : MonoBehaviour
     private void ResetPlayer()
     {
         player.transform.position = lastRespawnPoint.transform.position;
+        player.GetComponent<playerMove>().enabled = true;
     }
 }

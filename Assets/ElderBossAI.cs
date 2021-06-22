@@ -39,6 +39,8 @@ public class ElderBossAI : MonoBehaviour
     public GameObject door;
     public GameObject door2;
     public Transform LaserPoint;
+    float jumptimer;
+    bool isjumping;
 
     Material matWhite;
     Material matDefault;
@@ -56,11 +58,25 @@ public class ElderBossAI : MonoBehaviour
     {
         isAgainstWall = Physics2D.OverlapCircle(wallcheck.position, 0.3f, groundLayer);
 
+        if (isjumping && rb.velocity.x > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x - 0.05f, rb.velocity.y);
+        }
+        else if(isjumping && rb.velocity.x < 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x + 0.05f, rb.velocity.y);
+        }
+
         if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
         }
-       
+
+        if (jumptimer > 0)
+        {
+            jumptimer -= Time.deltaTime;
+        }
+
         if (attackTime > 0f)
         {
             attackTime -= Time.deltaTime;
@@ -76,6 +92,7 @@ public class ElderBossAI : MonoBehaviour
         }
         if(health == 0)
         {
+            cameraShake.Instance.ShakeCamera(1f, 4f);
             door.SetActive(false);
             door2.SetActive(false);
             Destroy(this.gameObject);
@@ -85,18 +102,30 @@ public class ElderBossAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isAttacking)
+        if(jumptimer > 0)
+        {
+            isjumping = true;
+        }
+        else if (jumptimer < 0)
+        {
+            isjumping = false;
+            jumptimer = 0;
+        }
+        else
+        {
+            isjumping = false;
+        }
+
+        if (isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if (isAgainstWall)
+        if (isAgainstWall && !isjumping)
         {
-            bossAnim.SetTrigger("Leave");
-            teleportX = Random.Range(bossArena.transform.position.x - mintpdistance, bossArena.transform.position.x + maxtpdistance);
-            Invoke("Leave", 1f);
+            Leave();
         }
 
-        if (playerDistance < 1 && playerDistance > 0|| playerDistance > -1 && playerDistance < 0)
+        if (playerDistance < 1 && playerDistance > 0 && !isjumping || playerDistance > -1 && playerDistance < 0 && !isjumping)
         {
             rb.velocity = new Vector2(0, 0);
             if (!attackCooldownActive)
@@ -136,11 +165,11 @@ public class ElderBossAI : MonoBehaviour
             checkForAttack();
         }
 
-        if (playerDistance > 1)
+        if (playerDistance > 1 && !isjumping)
         {
             boss.transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        else if(playerDistance < -1)
+        else if(playerDistance < -1 && !isjumping)
         {
             boss.transform.eulerAngles = new Vector3(0, 0, 0);
         }
@@ -148,7 +177,6 @@ public class ElderBossAI : MonoBehaviour
         activeRoom = GameObject.Find("Boundary");
 
         Invoke("activate",0.3f);
-
     }
 
     void checkForAttack()
@@ -157,6 +185,10 @@ public class ElderBossAI : MonoBehaviour
         if(randomAttack > 1)
         {
             Attack();
+        }
+        else if (randomAttack == 1 && !isjumping)
+        {
+            Leave();
         }
     }
     void Attack()
@@ -178,30 +210,30 @@ public class ElderBossAI : MonoBehaviour
         playerDistance = boss.transform.position.x - player.transform.position.x;
         verticalPlayerDistance = boss.transform.position.x - player.transform.position.y;
 
-        if (playerDistance < 6 && playerDistance > 1 && !isAttacking)
+        if (playerDistance < 6 && playerDistance > 1 && !isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
-        else if (playerDistance > -6 && playerDistance < -1 && !isAttacking)
+        else if (playerDistance > -6 && playerDistance < -1 && !isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
 
-        if (playerDistance > 6 && playerDistance < 7 && !isAttacking)
+        if (playerDistance > 6 && playerDistance < 7 && !isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);       
         }
-        else if(playerDistance > 7 && !isAttacking && !isAttacking)
+        else if(playerDistance > 7 && !isAttacking && !isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
 
 
-        if (playerDistance > -7 && playerDistance < -6 && !isAttacking)
+        if (playerDistance > -7 && playerDistance < -6 && !isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if (playerDistance < -7 && !isAttacking && !isAttacking)
+        else if (playerDistance < -7 && !isAttacking && !isAttacking && !isjumping)
         {
             rb.velocity = new Vector2(speed, rb.velocity.y);
 
@@ -259,7 +291,17 @@ public class ElderBossAI : MonoBehaviour
     }
     void Leave()
     {
-        transform.position = new Vector3(teleportX, transform.position.y, transform.position.z);
+        jumptimer = 3f;
+
+        if (playerDistance > 0)
+        {
+            rb.velocity = new Vector2(-5f, 10f);
+        }
+        
+        if (playerDistance < 0)
+        {
+            rb.velocity = new Vector2(5f, 10f);
+        }
     }
     void returnToDefault()
     {
